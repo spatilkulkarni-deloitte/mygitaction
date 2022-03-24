@@ -1,7 +1,6 @@
 name: Deploy the application to google cloud run
 on: push 
-    branches:
-      -main
+    branches: -main
 env:
   SERVICE_NAME: sjm-frontend-hu22
 
