@@ -1,5 +1,8 @@
 name: Deploy the application to google cloud run
 on: push 
+  branches:
+    include:
+    - main
 
 jobs:
   demo_ci_cd_build:
@@ -9,10 +12,12 @@ jobs:
 
       -name: Checkout
       uses: actions/checkout@master
-      
+
       -name: Setup gcloud CLI
       uses: google-github-actions/setup-gcloud@v0
-      with: service_account_key:${{secrets.GCP_SA_KEY}}
+      env:
+        DEFAULT_BRANCH: main
+        service_account_key:${{secrets.GCP_SA_KEY}}
 
       -name: Use gcloud CLI
       run: gcloud info
