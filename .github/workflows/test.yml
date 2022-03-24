@@ -1,8 +1,5 @@
 name: Deploy the application to google cloud run
 on: push 
-  branches:
-    include:
-    - main
 
 jobs:
   demo_ci_cd_build:
