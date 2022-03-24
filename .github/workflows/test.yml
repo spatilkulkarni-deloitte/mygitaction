@@ -1,6 +1,6 @@
 name: Deploy the application to google cloud run
-on: 
-  push:
+on:
+  push: 
     branches:
       -main
 env:
