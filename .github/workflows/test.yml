@@ -8,29 +8,29 @@ env:
   
 jobs:
   demo_ci_cd_build:
-  name:cloud run deploy
-  runs-on:ubuntu-latest
+  name: cloud run deploy
+  runs-on: ubuntu-latest
   steps:
   
-    -name:Checkout
-    uses:actions/checkout@master
+    -name: Checkout
+    uses: actions/checkout@master
     
-    -name:Setup gcloud CLI
-    uses:google-github-actions/setup-gcloud@v0
+    -name: Setup gcloud CLI
+    uses: google-github-actions/setup-gcloud@v0
     with:
       service_account_key:${{secrets.GCP_SA_KEY}}
     
-    -name:'Use gcloud CLI'
-    run:gcloud info
+    -name: 'Use gcloud CLI'
+    run: gcloud info
     
-    -name:Configure project id
-    run:gcloud config set project us-gcp-ame-con-116-npd-1
+    -name: Configure project id
+    run: gcloud config set project us-gcp-ame-con-116-npd-1
     
-    -name:Configure docker to use the gcloud command line as a credential helper
-    run:gcloud auth configure-docker -q
+    -name: Configure docker to use the gcloud command line as a credential helper
+    run: gcloud auth configure-docker -q
     
-    -name:Push image to google container registry
-    run:docker push gcr.io/us-gcp-ame-con-116-npd-1/$SERVICE_NAME
+    -name: Push image to google container registry
+    run: docker push gcr.io/us-gcp-ame-con-116-npd-1/$SERVICE_NAME
     
-    -name:DEPLOY
-    run:gcloud run deploy $SERVICE_NAME -image gcr.io/us-gcp-ame-con-116-npd-1/$SERVICE_NAME --max-instances 3 --min-instances 2 --platform managed --region us-west2 --allow-unauthenticated
+    -name: DEPLOY
+    run: gcloud run deploy $SERVICE_NAME -image gcr.io/us-gcp-ame-con-116-npd-1/$SERVICE_NAME --max-instances 3 --min-instances 2 --platform managed --region us-west2 --allow-unauthenticated
