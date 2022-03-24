@@ -1,10 +1,5 @@
 name: Deploy the application to google cloud run
 on: push 
-  branches:
-    include:
-    - main
-env:
-  SERVICE_NAME: sjm-frontend-hu22
 
 jobs:
   demo_ci_cd_build:
