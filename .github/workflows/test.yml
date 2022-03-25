@@ -1,5 +1,8 @@
 name: Deploy the application to google cloud run
-on: push 
+on:
+  push:
+    
+  
 
 jobs:
   demo_ci_cd_build:
